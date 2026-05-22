@@ -1,0 +1,15 @@
+{
+  "originHash" : "0bab5205917bd7303744ca8a1498d14886d2f030cfd33752cd6923d288eeb8e6",
+  "pins" : [
+    {
+      "identity" : "cobrowse-sdk-ios-binary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cobrowseio/cobrowse-sdk-ios-binary.git",
+      "state" : {
+        "revision" : "d5b8c796d39e72e89f9065ed91b748076fc15e40",
+        "version" : "3.14.0"
+      }
+    }
+  ],
+  "version" : 3
+}

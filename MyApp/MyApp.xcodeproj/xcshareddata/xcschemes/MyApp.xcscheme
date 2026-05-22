@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "2650"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Build MyUI.xcframework if missing"
+               scriptText = "set -e&#10;&#10;XCFRAMEWORK=&quot;${SRCROOT}/../Frameworks/MyUI.xcframework&quot;&#10;mkdir -p &quot;$(dirname &quot;${XCFRAMEWORK}&quot;)&quot;&#10;&#10;if [ -d &quot;${XCFRAMEWORK}&quot; ]; then&#10;    echo &quot;MyUI.xcframework already present, skipping build.&quot;&#10;    exit 0&#10;fi&#10;&#10;# Strip inherited deployment-target env vars so the inner archive build can pick its own.&#10;unset MACOSX_DEPLOYMENT_TARGET IPHONEOS_DEPLOYMENT_TARGET TVOS_DEPLOYMENT_TARGET WATCHOS_DEPLOYMENT_TARGET XROS_DEPLOYMENT_TARGET DRIVERKIT_DEPLOYMENT_TARGET&#10;unset SDKROOT&#10;&#10;echo &quot;MyUI.xcframework missing; building it...&quot;&#10;&#10;cd &quot;${SRCROOT}/../MyUI&quot;&#10;rm -rf build&#10;&#10;xcodebuild archive \&#10;    -scheme MyUI \&#10;    -destination &quot;generic/platform=iOS&quot; \&#10;    -archivePath build/MyUI-iOS.xcarchive \&#10;    SKIP_INSTALL=NO \&#10;    BUILD_LIBRARY_FOR_DISTRIBUTION=YES&#10;&#10;xcodebuild archive \&#10;    -scheme MyUI \&#10;    -destination &quot;generic/platform=iOS Simulator&quot; \&#10;    -archivePath build/MyUI-iOSSimulator.xcarchive \&#10;    SKIP_INSTALL=NO \&#10;    BUILD_LIBRARY_FOR_DISTRIBUTION=YES&#10;&#10;xcodebuild -create-xcframework \&#10;    -framework build/MyUI-iOS.xcarchive/Products/Library/Frameworks/MyUI.framework \&#10;    -framework build/MyUI-iOSSimulator.xcarchive/Products/Library/Frameworks/MyUI.framework \&#10;    -output &quot;${XCFRAMEWORK}&quot;&#10;&#10;rm -rf build&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "60A949BA2FC050960048CAC1"
+                     BuildableName = "MyApp.app"
+                     BlueprintName = "MyApp"
+                     ReferencedContainer = "container:MyApp.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "60A949BA2FC050960048CAC1"
+               BuildableName = "MyApp.app"
+               BlueprintName = "MyApp"
+               ReferencedContainer = "container:MyApp.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES"
+      queueDebuggingEnableBacktraceRecording = "Yes">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "60A949BA2FC050960048CAC1"
+            BuildableName = "MyApp.app"
+            BlueprintName = "MyApp"
+            ReferencedContainer = "container:MyApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "60A949BA2FC050960048CAC1"
+            BuildableName = "MyApp.app"
+            BlueprintName = "MyApp"
+            ReferencedContainer = "container:MyApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
